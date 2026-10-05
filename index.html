@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Wave - El Ritmo de los Grupos Funcionales</title>
+    <!-- Tailwind CSS for modern responsive utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        metallicDark: '#0b0b0f',
+                        metallicCard: '#14141d',
+                        metallicGold: '#d4af37',
+                        metallicCopper: '#b87333',
+                        metallicSilver: '#c0c0c0',
+                        neonPink: '#ff007f',
+                        neonCyan: '#00f0ff',
+                        neonPurple: '#9d00ff'
+                    },
+                    fontFamily: {
+                        retro: ['"Press Start 2P"', 'monospace'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b0b0f;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(184, 115, 51, 0.22) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(192, 192, 192, 0.18) 0%, transparent 60%),
+                radial-gradient(circle at 70% 20%, rgba(157, 0, 255, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 30% 60%, rgba(0, 240, 255, 0.15) 0%, transparent 45%),
+                linear-gradient(135deg, #0b0b0f 0%, #151520 50%, #08080c 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sparkle / Atmospheric Metallic Shimmering Particle Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, rgba(212, 175, 55, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 90px 40px, #c0c0c0, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, rgba(184, 115, 51, 0.95), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 230px 80px, rgba(192, 192, 192, 0.9), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 300px 200px, rgba(0, 240, 255, 0.85), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 350px 90px, rgba(157, 0, 255, 0.85), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 380px 150px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 350px 350px;
+            opacity: 0.65;
+            animation: sparkleShift 12s linear infinite;
+        }
+
+        @keyframes sparkleShift {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-350px); }
+        }
+
+        /* Metallic gold/copper shimmer title effect */
+        .retro-title {
+            font-family: 'Press Start 2P', monospace;
+            background: linear-gradient(135deg, #d4af37 0%, #ffdf73 25%, #b87333 50%, #e6ca65 75%, #8c5823 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmerTitle 4s linear infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes shimmerTitle {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .metallic-border {
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #d4af37, #c0c0c0, #b87333, #ffffff) 1;
+        }
+
+        .metallic-card-bg {
+            background: linear-gradient(145deg, #181822 0%, #101017 100%);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .vinyl-record {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #0d0d0d 0%, #0d0d0d 30%, #1a1a1a 31%, #000 33%, #141414 35%, #050505 70%, #1a1a1a 71%, #0a0a0a 73%, #000 100%);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.85), inset 0 0 20px rgba(255,255,255,0.08);
+            position: relative;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .vinyl-record:hover {
+            transform: scale(1.03) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.35);
+        }
+
+        .vinyl-grooves {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255,255,255,0.08);
+        }
+
+        .vinyl-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.25);
+        }
+
+        .spin {
+            animation: rotation 12s linear infinite;
+        }
+
+        @keyframes rotation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .audio-eq-bar {
+            width: 4px;
+            background: linear-gradient(to top, #b87333, #d4af37, #ffffff);
+            animation: eqBounce 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes eqBounce {
+            0% { height: 5px; }
+            100% { height: 35px; }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0b0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a38;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-metallicGold selection:text-metallicDark">
+
+    <header class="w-full border-b border-white/10 bg-metallicDark/85 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-metallicGold via-metallicCopper to-metallicSilver flex items-center justify-center shadow-lg shadow-metallicGold/20">
+                    <i class="fa-solid fa-compact-disc text-metallicDark text-xl animate-spin" style="animation-duration: 8s;"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-wider retro-title">
+                        CHEMISTRY WAVE
+                    </h1>
+                    <p class="text-xs text-metallicSilver/80 font-medium">Estudio Origen 80s-90s • Grupos Funcionales</p>
+                </div>
+            </div>
+
+            <!-- Controls & Audio Bar -->
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-1 h-8 px-3 bg-black/50 rounded-full border border-white/10">
+                    <div class="audio-eq-bar" style="animation-delay: 0.1s;"></div>
+                    <div class="audio-eq-bar" style="animation-delay: 0.4s;"></div>
+                    <div class="audio-eq-bar" style="animation-delay: 0.2s;"></div>
+                    <div class="audio-eq-bar" style="animation-delay: 0.6s;"></div>
+                    <span class="text-xs text-metallicGold font-mono ml-2" id="audio-status">RETRO STUDY BEAT</span>
+                </div>
+                
+                <button id="toggle-audio-btn" onclick="playClickSound(); toggleBackgroundMusic();" class="px-4 py-2 rounded-full bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs tracking-wide shadow-lg hover:brightness-110 transition flex items-center space-x-2">
+                    <i id="audio-icon" class="fa-solid fa-volume-high"></i>
+                    <span id="audio-text">MÚSICA: OFF</span>
+                </button>
+
+                <nav class="flex flex-wrap justify-center gap-2">
+                    <button onclick="playClickSound(); switchTab('catalog');" id="nav-catalog" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-white/10 text-white hover:bg-white/20 transition flex items-center space-x-1.5 border border-white/10">
+                        <i class="fa-solid fa-record-vinyl text-metallicGold"></i>
+                        <span>Vinilos</span>
+                    </button>
+                    <button onclick="playClickSound(); switchTab('flashcards');" id="nav-flashcards" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-white/5 text-metallicSilver hover:bg-white/10 transition flex items-center space-x-1.5 border border-white/10">
+                        <i class="fa-solid fa-layer-group text-metallicCopper"></i>
+                        <span>Flashcards</span>
+                    </button>
+                    <button onclick="playClickSound(); switchTab('search');" id="nav-search" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-white/5 text-metallicSilver hover:bg-white/10 transition flex items-center space-x-1.5 border border-white/10">
+                        <i class="fa-solid fa-magnifying-glass text-cyan-300"></i>
+                        <span>Buscador</span>
+                    </button>
+                    <button onclick="playClickSound(); switchTab('quiz');" id="nav-quiz" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-white/5 text-metallicSilver hover:bg-white/10 transition flex items-center space-x-1.5 border border-white/10">
+                        <i class="fa-solid fa-gamepad text-neonPink"></i>
+                        <span>Quiz / Reto</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 relative z-10">
+
+        <!-- CATÁLOGO DE VINILOS (MÓDULO 1) -->
+        <section id="catalog-section" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="px-3 py-1 rounded-full bg-metallicGold/20 border border-metallicGold/40 text-metallicGold text-xs font-bold uppercase tracking-widest">Módulo 1: Catálogo Interactivo</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">El Ritmo de los Grupos Funcionales</h2>
+                <p class="text-sm text-metallicSilver">Gira los discos para explorar las moléculas orgánicas clave sintonizadas con los mejores éxitos de los 80 y 90. Haz clic en cualquier disco para abrir la tarjeta técnica.</p>
+            </div>
+
+            <!-- Carousel Container (Widened horizontally) -->
+            <div class="relative flex items-center justify-center my-10">
+                <!-- Navigation Arrows -->
+                <button onclick="playClickSound(); prevVinyl();" class="absolute left-0 sm:left-2 z-20 w-12 h-12 rounded-full bg-metallicCard border border-white/20 text-white flex items-center justify-center shadow-xl hover:bg-metallicGold/30 transition hover:scale-110">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+                
+                <button onclick="playClickSound(); nextVinyl();" class="absolute right-0 sm:right-2 z-20 w-12 h-12 rounded-full bg-metallicCard border border-white/20 text-white flex items-center justify-center shadow-xl hover:bg-metallicGold/30 transition hover:scale-110">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+
+                <!-- Carousel Viewport (Widened for complete description reading) -->
+                <div id="carousel-container" class="w-full max-w-5xl overflow-hidden py-6 px-4 sm:px-12 flex justify-center items-center">
+                    <!-- Dynamically injected via JS -->
+                </div>
+            </div>
+
+            <!-- Carousel Pagination Dots & Quick Info -->
+            <div class="flex flex-col items-center space-y-4">
+                <div id="carousel-dots" class="flex space-x-2">
+                    <!-- Dots injected via JS -->
+                </div>
+                <div id="vinyl-quick-indicator" class="text-xs font-mono text-metallicSilver bg-metallicCard px-4 py-2 rounded-xl border border-white/10 text-center">
+                    Disco <span id="current-index-num">1</span> de <span id="total-index-num">9</span> • <span id="current-group-name" class="text-metallicGold font-bold">Alcoholes</span>
+                </div>
+            </div>
+
+            <!-- Grid overview of all cards for quick jump -->
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-compact-disc text-metallicGold"></i> Todos los Surcos Moleculares
+                </h3>
+                <div id="vinyl-grid-overview" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    <!-- Grid cards injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- MODO PRÁCTICA / FLASHCARDS (MÓDULO 2) -->
+        <section id="flashcards-section" class="hidden space-y-8 max-w-3xl mx-auto">
+            <div class="text-center space-y-3">
+                <span class="px-3 py-1 rounded-full bg-metallicCopper/20 border border-metallicCopper/40 text-metallicCopper text-xs font-bold uppercase tracking-widest">Módulo 2: Práctica / Flashcards</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Identifica el Surco Molecular</h2>
+                <p class="text-sm text-metallicSilver">Observa la estructura, elige la familia orgánica y recibe retroalimentación inmediata. Completa una ronda de 18 estructuras sin repeticiones.</p>
+            </div>
+
+            <div class="metallic-card-bg p-6 sm:p-8 rounded-3xl border border-white/10 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-24 -left-24 w-48 h-48 bg-metallicCopper/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="flex justify-between items-center pb-5 mb-6 border-b border-white/10">
+                    <div>
+                        <span class="text-xs font-mono uppercase tracking-wider text-metallicCopper">Pista de práctica</span>
+                        <h3 class="text-lg font-bold text-white">Reconocimiento por estructura</h3>
+                    </div>
+                    <div class="px-3 py-1.5 bg-black/50 rounded-xl border border-white/10">
+                        <span class="text-xs font-mono text-metallicSilver">Pista <strong id="practice-progress" class="text-metallicCopper">1</strong>/18 &nbsp;•&nbsp; Aciertos: <strong id="practice-score" class="text-metallicGold">0</strong>/<span id="practice-attempts">0</span></span>
+                    </div>
+                </div>
+
+                <div class="text-center space-y-3 mb-7">
+                    <span class="text-xs uppercase tracking-widest text-metallicSilver">Estructura molecular</span>
+                    <div id="practice-structure" class="text-2xl sm:text-4xl font-mono font-black text-white tracking-wider p-6 rounded-2xl bg-black/40 border border-white/10">CH₃-CH₂-OH</div>
+                    <p id="practice-hint" class="text-xs text-metallicSilver">Selecciona el grupo funcional principal.</p>
+                </div>
+
+                <div id="practice-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                <div id="practice-feedback" class="hidden mt-6 p-4 rounded-2xl border text-sm font-medium"></div>
+                <div class="mt-7 flex justify-end">
+                    <button id="practice-next-btn" onclick="playClickSound(); nextPracticeCard();" class="hidden px-6 py-3 rounded-xl bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition">
+                        Siguiente Pista <i class="fa-solid fa-forward-step ml-2"></i>
+                    </button>
+                </div>
+                <div id="practice-results" class="hidden mt-7 text-center p-6 rounded-2xl bg-black/40 border border-metallicGold/30">
+                    <i class="fa-solid fa-record-vinyl text-4xl text-metallicGold mb-3"></i>
+                    <h3 class="text-xl font-extrabold text-white">¡Ronda completada!</h3>
+                    <p id="practice-final-score" class="mt-2 text-sm text-metallicSilver"></p>
+                    <p id="practice-final-message" class="mt-1 text-xs text-metallicCopper"></p>
+                    <button onclick="playClickSound(); resetPractice();" class="mt-5 px-6 py-3 rounded-xl bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition">
+                        <i class="fa-solid fa-rotate-right mr-2"></i> Reiniciar práctica
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULADOR DE BÚSQUEDA Y SUBESTRUCTURA (MÓDULO 3) -->
+        <section id="search-section" class="hidden space-y-8 max-w-4xl mx-auto">
+            <div class="text-center space-y-3">
+                <span class="px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-300/30 text-cyan-300 text-xs font-bold uppercase tracking-widest">Módulo 3: Búsqueda & Subestructura</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Analizador de Frecuencias Moleculares</h2>
+                <p class="text-sm text-metallicSilver">Escribe el nombre o la fórmula de una molécula del repertorio, o selecciónala de la biblioteca, para localizar su grupo funcional principal.</p>
+            </div>
+
+            <div class="metallic-card-bg p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3">
+                    <div class="relative">
+                        <i class="fa-solid fa-wave-square absolute left-4 top-1/2 -translate-y-1/2 text-metallicGold"></i>
+                        <input id="molecule-search-input" type="text" onkeydown="if(event.key==='Enter'){analyzeMolecule();}" placeholder="Ej. etanol, CH3CH2OH, acetona..." class="w-full pl-11 pr-4 py-3.5 rounded-xl bg-black/40 border border-white/15 text-white placeholder:text-metallicSilver/50 outline-none focus:border-metallicGold transition font-mono text-sm">
+                    </div>
+                    <button onclick="playClickSound(); analyzeMolecule();" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition">
+                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Analizar
+                    </button>
+                </div>
+
+                <div>
+                    <label for="molecule-select" class="text-xs font-mono uppercase text-metallicSilver block mb-2">O selecciona una molécula de la biblioteca</label>
+                    <select id="molecule-select" onchange="selectMoleculeExample();" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/15 text-white outline-none focus:border-metallicGold transition text-sm">
+                        <option value="">Seleccionar molécula...</option>
+                    </select>
+                </div>
+
+                <div id="molecule-result" class="hidden p-5 sm:p-6 rounded-2xl bg-black/35 border border-white/10 space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                        <div>
+                            <span class="text-xs font-mono uppercase text-cyan-300">Resultado del análisis</span>
+                            <h3 id="result-molecule-name" class="text-xl font-black text-white mt-1"></h3>
+                        </div>
+                        <span id="result-category" class="self-start px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-bold text-metallicSilver"></span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                            <span class="text-xs font-mono uppercase text-metallicGold">Estructura / Fórmula</span>
+                            <div id="result-structure" class="mt-2 text-lg sm:text-xl font-mono font-bold text-white tracking-wide"></div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                            <span class="text-xs font-mono uppercase text-metallicCopper">Grupo funcional principal</span>
+                            <div id="result-group" class="mt-2 text-lg font-bold text-white"></div>
+                            <div id="result-substructure" class="mt-1 text-xs font-mono text-metallicSilver"></div>
+                        </div>
+                    </div>
+                    <p id="result-explanation" class="text-sm text-metallicSilver leading-relaxed"></p>
+                </div>
+
+                <div id="molecule-not-found" class="hidden p-4 rounded-2xl bg-amber-950/30 border border-amber-500/40 text-amber-200 text-sm">
+                    <i class="fa-solid fa-circle-info mr-2"></i><span id="not-found-text"></span>
+                </div>
+                <p class="text-[11px] text-metallicSilver/70 text-center">Simulador didáctico basado en una biblioteca de ejemplos representativos de los grupos funcionales del curso.</p>
+            </div>
+        </section>
+
+        <!-- QUIZ INTERACTIVO (MÓDULO 4) -->
+        <section id="quiz-section" class="hidden space-y-8 max-w-3xl mx-auto">
+            <div class="text-center space-y-3">
+                <span class="px-3 py-1 rounded-full bg-neonPink/20 border border-neonPink/40 text-neonPink text-xs font-bold uppercase tracking-widest">Módulo 4: Diagnóstico & Quiz Retro</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Desafío Estructural Chemistry Wave</h2>
+                <p class="text-sm text-metallicSilver">Demuestra tu destreza conectando fórmulas, estructuras y nombres IUPAC con el sonido y la vibra correcta.</p>
+            </div>
+
+            <!-- Quiz Card -->
+            <div class="metallic-card-bg p-6 sm:p-8 rounded-3xl border border-white/10 relative overflow-hidden shadow-2xl">
+                <!-- Decorative background pulse -->
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-metallicGold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Quiz Header Info -->
+                <div class="flex justify-between items-center pb-6 mb-6 border-b border-white/10">
+                    <div>
+                        <span class="text-xs font-mono uppercase tracking-wider text-metallicGold">Pregunta <span id="quiz-current-q">1</span> de <span id="quiz-total-q">8</span></span>
+                        <h3 id="quiz-category" class="text-lg font-bold text-white">Identificación de Grupos Funcionales</h3>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-1.5 px-3 py-1.5 bg-black/50 rounded-xl border border-white/10">
+                            <i class="fa-solid fa-clock text-neonPink text-xs"></i>
+                            <span id="quiz-timer" class="text-xs font-mono font-bold text-white">30s</span>
+                        </div>
+                        <div class="px-3 py-1.5 bg-metallicGold/20 rounded-xl border border-metallicGold/40">
+                            <span class="text-xs font-mono font-bold text-metallicGold">Puntos: <span id="quiz-score">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Body -->
+                <div id="quiz-body" class="space-y-6">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Feedback Area -->
+                <div id="quiz-feedback" class="mt-6 hidden p-4 rounded-2xl border text-sm font-medium transition-all">
+                    <!-- Feedback injected via JS -->
+                </div>
+
+                <!-- Next Button -->
+                <div class="mt-8 flex justify-end">
+                    <button id="quiz-next-btn" onclick="playClickSound(); nextQuizQuestion();" class="hidden px-6 py-3 rounded-xl bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition flex items-center space-x-2">
+                        <span>Siguiente Pista</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Final Results Card (Hidden by default) -->
+            <div id="quiz-results-card" class="hidden metallic-card-bg p-8 rounded-3xl border border-metallicGold/40 text-center space-y-6">
+                <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-metallicGold to-neonPink flex items-center justify-center text-3xl shadow-xl shadow-metallicGold/20">
+                    <i class="fa-solid fa-trophy text-metallicDark"></i>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-black text-white">¡Sesión de DJ Química Finalizada!</h3>
+                    <p class="text-sm text-metallicSilver">Has completado el diagnóstico estructural de Chemistry Wave.</p>
+                </div>
+                <div class="py-4 bg-black/50 rounded-2xl border border-white/10 max-w-xs mx-auto">
+                    <span class="text-xs text-metallicSilver uppercase block mb-1">Puntuación Final</span>
+                    <span id="final-score-display" class="text-3xl font-black text-metallicGold font-mono">0 / 100</span>
+                </div>
+                <p id="final-feedback-text" class="text-sm text-metallicGold font-medium italic"></p>
+                <div class="pt-4 flex justify-center space-x-4">
+                    <button onclick="playClickSound(); restartQuiz();" class="px-6 py-3 rounded-xl bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition">
+                        <i class="fa-solid fa-rotate-right mr-2"></i> Volver a Mezclar (Reiniciar)
+                    </button>
+                    <button onclick="playClickSound(); switchTab('catalog');" class="px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-xs tracking-wider border border-white/20 hover:bg-white/20 transition">
+                        <i class="fa-solid fa-compact-disc mr-2"></i> Ver Catálogo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="vinyl-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-content-box" class="metallic-card-bg w-full max-w-2xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 relative">
+            <!-- Modal Header with dynamic color accent -->
+            <div id="modal-header-bg" class="p-6 border-b border-white/10 flex justify-between items-start">
+                <div class="flex items-center space-x-3">
+                    <div id="modal-vinyl-icon" class="w-12 h-12 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-compact-disc spin"></i>
+                    </div>
+                    <div>
+                        <span id="modal-group-type" class="text-xs font-mono uppercase px-2.5 py-0.5 rounded-full bg-black/50 border border-white/10">Familia</span>
+                        <h3 id="modal-title" class="text-xl sm:text-2xl font-black text-white mt-1">Nombre del Grupo</h3>
+                    </div>
+                </div>
+                <button onclick="playClickSound(); closeModal();" class="w-10 h-10 rounded-full bg-black/50 border border-white/20 text-white hover:bg-white/20 transition flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+                <!-- Song & Metaphor Banner with dynamic color accent -->
+                <div id="modal-song-banner" class="p-4 rounded-2xl bg-black/50 border flex items-center space-x-4">
+                    <div id="modal-song-icon" class="w-12 h-12 rounded-full border flex items-center justify-center text-xl flex-shrink-0">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div>
+                        <span id="modal-song-label" class="text-xs uppercase font-mono">Sintonía 80s / 90s Asociada</span>
+                        <h4 id="modal-song" class="text-sm font-bold text-white">Canción - Artista</h4>
+                        <p id="modal-metaphor" class="text-xs text-metallicSilver/90 mt-1 italic"></p>
+                    </div>
+                </div>
+
+                <!-- Chemical Structure & Formula -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                        <span id="modal-formula-label" class="text-xs font-mono uppercase block">Fórmula General</span>
+                        <div id="modal-formula" class="text-lg font-mono font-bold text-white tracking-wider">R-OH</div>
+                        <p id="modal-structure-desc" class="text-xs text-metallicSilver"></p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                        <span id="modal-nomenclature-label" class="text-xs font-mono uppercase block">Nomenclatura IUPAC</span>
+                        <div class="text-xs space-y-1 text-metallicSilver">
+                            <div><strong class="text-white">Prefijo:</strong> <span id="modal-prefix">-</span></div>
+                            <div><strong class="text-white">Sufijo:</strong> <span id="modal-suffix">-</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Classic Example & Use -->
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 space-y-3">
+                    <h5 id="modal-example-header" class="text-xs font-mono uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-flask"></i> Ejemplo Clásico y Aplicación
+                    </h5>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-white/5 pb-2">
+                            <span class="text-metallicSilver">Ejemplo IUPAC:</span>
+                            <span id="modal-example-name" class="font-bold text-white">Etanol</span>
+                        </div>
+                        <div class="flex justify-between border-b border-white/5 pb-2">
+                            <span class="text-metallicSilver">Estructura / Fórmula:</span>
+                            <span id="modal-example-formula" class="font-mono text-metallicGold">CH3-CH2-OH</span>
+                        </div>
+                        <div>
+                            <span class="text-metallicSilver block mb-1">Uso / Contexto:</span>
+                            <p id="modal-example-use" class="text-xs text-metallicSilver/90 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-black/50 border-t border-white/10 flex justify-end">
+                <button onclick="playClickSound(); closeModal();" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition border border-white/10">
+                    Cerrar Disco
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-white/10 bg-metallicDark py-6 text-center text-xs text-metallicSilver relative z-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>Chemistry Wave • Herramienta Interactiva de Química Orgánica & UI/UX</p>
+            <div class="flex space-x-4">
+                <span class="text-metallicGold"><i class="fa-solid fa-atom mr-1"></i> Estructuras Moleculares</span>
+                <span class="text-metallicCopper"><i class="fa-solid fa-compact-disc mr-1"></i> Vinilos 80s-90s</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const functionalGroups = [
+            {
+                id: 1,
+                name: "Alcoholes",
+                category: "Compuestos oxigenados",
+                formula: "R-OH",
+                structureDesc: "Presencia de un grupo hidroxilo (-OH) unido a un carbono saturado (hibridación sp³).",
+                prefix: "hidroxi-",
+                suffix: "-ol",
+                accentColor: "#9d00ff", // Platino Púrpura
+                metallicBadge: "Platino Púrpura",
+                vinylColor: "radial-gradient(circle, #1a002b 0%, #0d0014 50%, #2b0047 100%)",
+                song: "«Purple Rain» — Prince (1984)",
+                metaphor: "Como las guitarras eléctricas y la atmósfera melancólica de Prince, los alcoholes tienen un enlace polar O-H capaz de formar fuertes puentes de hidrógeno, elevando sus puntos de ebullición como un solo inolvidable.",
+                exampleName: "Etanol (Alcohol etílico)",
+                exampleFormula: "CH₃-CH₂-OH",
+                exampleUse: "Utilizado como disolvente industrial, antiséptico y en la industria de bebidas fermentadas."
+            },
+            {
+                id: 2,
+                name: "Aldehídos",
+                category: "Compuestos oxigenados",
+                formula: "R-CHO",
+                structureDesc: "Grupo carbonilo (C=O) ubicado siempre en el extremo de la cadena carbonada.",
+                prefix: "formil-",
+                suffix: "-al",
+                accentColor: "#d4af37", // Oro Sonoro
+                metallicBadge: "Oro Sonoro",
+                vinylColor: "radial-gradient(circle, #2b2208 0%, #141003 50%, #47380d 100%)",
+                song: "«Billie Jean» — Michael Jackson (1982)",
+                metaphor: "Inconfundibles desde el primer segundo, los aldehídos poseen el grupo carbonilo en el extremo de la cadena, marcando el compás exacto como el bajo sintetizado de Billie Jean.",
+                exampleName: "Metanal (Formaldehído)",
+                exampleFormula: "H-CHO",
+                exampleUse: "Usado en solución acuosa (formol) para la preservación de tejidos biológicos y resinas."
+            },
+            {
+                id: 3,
+                name: "Cetonas",
+                category: "Compuestos oxigenados",
+                formula: "R-CO-R'",
+                structureDesc: "Grupo carbonilo (C=O) situado entre dos átomos de carbono o radicales hidrocarbonados en el interior de la cadena.",
+                prefix: "oxo-",
+                suffix: "-ona",
+                accentColor: "#00f0ff", // Cobre Neón (Neón Cyan)
+                metallicBadge: "Cobre Neón",
+                vinylColor: "radial-gradient(circle, #002b33 0%, #00141a 50%, #004d59 100%)",
+                song: "«Smells Like Teen Spirit» — Nirvana (1991)",
+                metaphor: "El grupo carbonilo en medio de dos cadenas de carbono actúa como el riff central que conecta todo el grunge de los 90, equilibrando la molécula con estabilidad y potencia.",
+                exampleName: "Propanona (Acetona)",
+                exampleFormula: "CH₃-CO-CH₃",
+                exampleUse: "Disolvente orgánico ampliamente utilizado en pinturas, barnices, limpieza y quitaesmaltes."
+            },
+            {
+                id: 4,
+                name: "Ácidos Carboxílicos",
+                category: "Compuestos oxigenados",
+                formula: "R-COOH",
+                structureDesc: "Grupo carboxilo (-COOH) terminal, combinando un carbonilo y un hidroxilo.",
+                prefix: "carboxi-",
+                suffix: "ácido ...-oico",
+                accentColor: "#ff007f", // Rosa Metálico Intenso
+                metallicBadge: "Rosa Metálico Intenso",
+                vinylColor: "radial-gradient(circle, #330019 0%, #1a000d 50%, #59002c 100%)",
+                song: "«Sweet Child O' Mine» — Guns N' Roses (1987)",
+                metaphor: "Con su carácter ácido, pueden donar protones (H⁺) con la misma energía punzante del solo de Slash en la cúspide del rock de los 80.",
+                exampleName: "Ácido Etanoico (Ácido Acético)",
+                exampleFormula: "CH₃-COOH",
+                exampleUse: "Componente principal del vinagre y precursor en la síntesis de polímeros y acetatos."
+            },
+            {
+                id: 5,
+                name: "Ésteres",
+                category: "Compuestos oxigenados",
+                formula: "R-COO-R'",
+                structureDesc: "Derivados de ácidos carboxílicos donde el H del hidroxilo se reemplaza por un grupo alquilo.",
+                prefix: "alcoxicarbonil-",
+                suffix: "-oato de ...ilo",
+                accentColor: "#00ff88", // Esmeralda Cromo
+                metallicBadge: "Esmeralda Cromo",
+                vinylColor: "radial-gradient(circle, #00331a 0%, #001a0d 50%, #00592c 100%)",
+                song: "«Vogue» — Madonna (1990)",
+                metaphor: "Famosos por sus aromas dulces y frutales, los ésteres desprenden elegancia y sofisticación fashion, igual que la alta costura y el glamour de Madonna.",
+                exampleName: "Etanoato de etilo (Acetato de etilo)",
+                exampleFormula: "CH₃-COO-CH₂-CH₃",
+                exampleUse: "Empleados masivamente como esencias artificiales de frutas, fragancias y disolventes."
+            },
+            {
+                id: 6,
+                name: "Aminas (1°, 2°, 3°)",
+                category: "Compuestos nitrogenados",
+                formula: "R-NH₂, R₂NH, R₃N",
+                structureDesc: "Derivados orgánicos del amoníaco (NH₃) donde se sustituyen uno, dos o tres hidrógenos por radicales alquilo. Incluyen aminas primarias, secundarias y terciarias.",
+                prefix: "amino-",
+                suffix: "-amina",
+                accentColor: "#3b82f6", // Azul Acero Refinado
+                metallicBadge: "Azul Acero Refinado",
+                vinylColor: "radial-gradient(circle, #0b1c3d 0%, #060e1f 50%, #15326b 100%)",
+                song: "«Don't Speak» — No Doubt (1995)",
+                metaphor: "Con su par de electrones libres, las aminas son bases orgánicas capaces de reaccionar intensamente, reflejando la emotividad vocal de Gwen Stefani.",
+                exampleName: "Metilamina (Primaria)",
+                exampleFormula: "CH₃-NH₂",
+                exampleUse: "Fabricación de fármacos, colorantes y productos químicos agrícolas."
+            },
+            {
+                id: 7,
+                name: "Amidas",
+                category: "Compuestos nitrogenados",
+                formula: "R-CONH₂",
+                structureDesc: "Derivados de ácidos carboxílicos que contienen un átomo de nitrógeno unido directamente al carbono del grupo carbonilo.",
+                prefix: "carbamoil-",
+                suffix: "-amida",
+                accentColor: "#f97316", // Cobre Ardiente
+                metallicBadge: "Cobre Ardiente",
+                vinylColor: "radial-gradient(circle, #3d1c0b 0%, #1f0e06 50%, #6b3215 100%)",
+                song: "«Enter Sandman» — Metallica (1991)",
+                metaphor: "Estables y fundamentales en enlaces peptídicos de proteínas, soportan la estructura biológica con la solidez y contundencia de la batería de Lars Ulrich.",
+                exampleName: "Metanamida (Formamida)",
+                exampleFormula: "H-CONH₂",
+                exampleUse: "Disolvente polar y agente suavizante en síntesis orgánica."
+            },
+            {
+                id: 8,
+                name: "Halogenuros de Alquilo",
+                category: "Compuestos halogenados",
+                formula: "R-X (X = F, Cl, Br, I)",
+                structureDesc: "Cadena carbonada unida covalentemente a un átomo de halógeno (F, Cl, Br o I).",
+                prefix: "fluoro-, cloro-, bromo-, yodo-",
+                suffix: "—",
+                accentColor: "#ef4444", // Titanio Rojo
+                metallicBadge: "Titanio Rojo",
+                vinylColor: "radial-gradient(circle, #3d0b0b 0%, #1f0606 50%, #6b1515 100%)",
+                song: "«The Rhythm of the Night» — Corona (1993)",
+                metaphor: "Altamente reactivos en sustituciones nucleofílicas, actúan como chispa inmediata encendiendo la pista de baile de cualquier discoteca eurodance.",
+                exampleName: "Clorometano (Cloruro de metilo)",
+                exampleFormula: "CH₃-Cl",
+                exampleUse: "Agente metilante y antiguo refrigerante industrial."
+            },
+            {
+                id: 9,
+                name: "Alquenos y Alquinos",
+                category: "Hidrocarburos insaturados",
+                formula: "C=C / C≡C (Insaturaciones)",
+                structureDesc: "Hidrocarburos con dobles (alquenos) o triples (alquinos) enlaces carbono-carbono.",
+                prefix: "Raíz según nº de C: et- (2), prop- (3), but- (4), pent- (5), hex- (6)…",
+                suffix: "-eno / -ino",
+                accentColor: "#eab308", // Bronce Estelar
+                metallicBadge: "Bronce Estelar",
+                vinylColor: "radial-gradient(circle, #3d330b 0%, #1f1a06 50%, #6b5c15 100%)",
+                song: "«Jump» — Van Halen (1984)",
+                metaphor: "Las insaturaciones son puntos de alta tensión química listos para abrirse mediante adición electrofílica, igual que la energía explosiva y los saltos de David Lee Roth.",
+                exampleName: "Eteno (Etileno) / Etino (Acetileno)",
+                exampleFormula: "CH₂=CH₂ / CH≡CH",
+                exampleUse: "Etileno para maduración de frutas y polímeros (polietileno); acetileno para soldaduras."
+            }
+        ];
+
+        let currentVinylIndex = 0;
+
+        // --- WEB AUDIO API / SYNTHESIZER ENGINE ---
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let jazzInterval = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // Click sound effect for UI buttons and vinyl selection
+        function playClickSound() {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5 note
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08); // A5 note
+
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch (e) {
+                console.log("Click sound error:", e);
+            }
+        }
+
+        // Original retro 80s study beat generated entirely with Web Audio API.
+        // Soft electronic drums + simple bass + restrained synth atmosphere.
+        // No external audio file or commercial recording is used.
+        let synthStep = 0;
+
+        const retroProgression = [
+            { chord: [220.00, 261.63, 329.63], bass: 110.00 }, // Am
+            { chord: [174.61, 220.00, 261.63], bass: 87.31 },  // F
+            { chord: [261.63, 329.63, 392.00], bass: 130.81 }, // C
+            { chord: [196.00, 246.94, 293.66], bass: 98.00 }   // G
+        ];
+
+        function createRetroTone(freq, when, duration, volume, type = 'triangle', cutoff = 1000) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const filter = audioCtx.createBiquadFilter();
+
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, when);
+
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(cutoff, when);
+            filter.Q.setValueAtTime(0.8, when);
+
+            gain.gain.setValueAtTime(0.0001, when);
+            gain.gain.exponentialRampToValueAtTime(volume, when + 0.018);
+            gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(when);
+            osc.stop(when + duration + 0.04);
+        }
+
+        function playKick(when, accent = false) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(115, when);
+            osc.frequency.exponentialRampToValueAtTime(48, when + 0.12);
+            gain.gain.setValueAtTime(accent ? 0.055 : 0.040, when);
+            gain.gain.exponentialRampToValueAtTime(0.0001, when + 0.15);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(when);
+            osc.stop(when + 0.16);
+        }
+
+        function playSnare(when) {
+            const bufferSize = Math.floor(audioCtx.sampleRate * 0.13);
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                const env = 1 - (i / bufferSize);
+                data[i] = (Math.random() * 2 - 1) * env;
+            }
+
+            const noise = audioCtx.createBufferSource();
+            const filter = audioCtx.createBiquadFilter();
+            const gain = audioCtx.createGain();
+            noise.buffer = buffer;
+            filter.type = 'highpass';
+            filter.frequency.setValueAtTime(1100, when);
+            gain.gain.setValueAtTime(0.028, when);
+            gain.gain.exponentialRampToValueAtTime(0.0001, when + 0.13);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start(when);
+
+            // Short tonal body gives the snare a gentle 80s drum-machine character.
+            createRetroTone(185, when, 0.10, 0.012, 'triangle', 700);
+        }
+
+        function playHat(when, open = false) {
+            const duration = open ? 0.10 : 0.045;
+            const bufferSize = Math.floor(audioCtx.sampleRate * duration);
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                const env = 1 - (i / bufferSize);
+                data[i] = (Math.random() * 2 - 1) * env;
+            }
+
+            const noise = audioCtx.createBufferSource();
+            const filter = audioCtx.createBiquadFilter();
+            const gain = audioCtx.createGain();
+            noise.buffer = buffer;
+            filter.type = 'highpass';
+            filter.frequency.setValueAtTime(5200, when);
+            gain.gain.setValueAtTime(open ? 0.010 : 0.007, when);
+            gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start(when);
+        }
+
+        function playRetroStudyBeat() {
+            if (!isAudioPlaying || !audioCtx) return;
+
+            try {
+                const now = audioCtx.currentTime;
+                const step = synthStep % 8;          // eighth-note pattern
+                const bar = Math.floor(synthStep / 8) % retroProgression.length;
+                const harmony = retroProgression[bar];
+
+                // Quiet pad once per bar: atmosphere only, not the main focus.
+                if (step === 0) {
+                    harmony.chord.forEach((freq, idx) => {
+                        createRetroTone(freq, now, 2.25, 0.0065, idx === 1 ? 'sine' : 'triangle', 820);
+                    });
+                }
+
+                // 80s drum-machine groove: kick on 1/3, snare on 2/4, hats on eighth notes.
+                if (step === 0 || step === 4) playKick(now, true);
+                if (step === 3 || step === 6) playKick(now, false);
+                if (step === 2 || step === 6) playSnare(now);
+                playHat(now + 0.012, step === 7);
+
+                // Simple bass line: root notes with a small octave lift near the end of the bar.
+                if (step === 0 || step === 3 || step === 4 || step === 6) {
+                    const bassFreq = step === 6 ? harmony.bass * 2 : harmony.bass;
+                    createRetroTone(bassFreq, now + 0.015, 0.28, 0.026, 'triangle', 460);
+                }
+
+                // Sparse retro pluck to keep the loop melodic without distracting from study.
+                if (step === 1 || step === 5) {
+                    const note = harmony.chord[(bar + step) % harmony.chord.length] * 2;
+                    createRetroTone(note, now + 0.035, 0.20, 0.006, 'square', 1250);
+                }
+
+                synthStep++;
+            } catch (e) {
+                console.log("Retro beat error:", e);
+            }
+        }
+
+        function toggleBackgroundMusic() {
+            initAudio();
+            isAudioPlaying = !isAudioPlaying;
+            const btnText = document.getElementById('audio-text');
+            const audioIcon = document.getElementById('audio-icon');
+            const audioStatus = document.getElementById('audio-status');
+
+            if (isAudioPlaying) {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                btnText.innerText = "MÚSICA: ON";
+                audioIcon.className = "fa-solid fa-volume-high text-metallicGold";
+                audioStatus.innerText = "RETRO STUDY BEAT ACTIVO";
+
+                synthStep = 0;
+                playRetroStudyBeat();
+                jazzInterval = setInterval(playRetroStudyBeat, 250);
+            } else {
+                btnText.innerText = "MÚSICA: OFF";
+                audioIcon.className = "fa-solid fa-volume-xmark";
+                audioStatus.innerText = "RETRO STUDY BEAT PAUSADO";
+                if (jazzInterval) {
+                    clearInterval(jazzInterval);
+                    jazzInterval = null;
+                }
+            }
+        }
+
+        // --- CAROUSEL & CATALOG RENDER ---
+        function renderCarousel() {
+            const container = document.getElementById('carousel-container');
+            const group = functionalGroups[currentVinylIndex];
+
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center gap-8 p-8 metallic-card-bg rounded-3xl border shadow-2xl w-full transition-all duration-500" style="border-color: ${group.accentColor}55;">
+                    <!-- Vinyl Graphic with exact matching color badge -->
+                    <div class="relative flex-shrink-0">
+                        <div class="vinyl-record spin" onclick="playClickSound(); openVinylModal(${group.id});" style="border-color: ${group.accentColor};">
+                            <div class="vinyl-grooves"></div>
+                            <div class="vinyl-label" style="background: ${group.vinylColor}; border-color: ${group.accentColor};">
+                                <span class="text-[9px] font-mono uppercase text-white font-bold">WAVE #${group.id}</span>
+                                <span class="text-xs font-black text-white mt-0.5">${group.name.split(' ')[0]}</span>
+                                <span class="text-[8px] font-mono font-bold mt-0.5" style="color: ${group.accentColor};">${group.formula}</span>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 px-3 py-1 bg-black/85 border rounded-full text-[10px] font-mono text-white shadow-lg" style="border-color: ${group.accentColor};">
+                            <span class="inline-block w-2 h-2 rounded-full mr-1" style="background-color: ${group.accentColor};"></span>
+                            ${group.metallicBadge}
+                        </div>
+                    </div>
+
+                    <!-- Info Preview -->
+                    <div class="space-y-4 text-center md:text-left flex-grow max-w-xl">
+                        <div class="inline-block px-3 py-1 rounded-full bg-white/5 border text-xs font-mono font-bold" style="border-color: ${group.accentColor}55; color: ${group.accentColor};">
+                            ${group.formula}
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white">${group.name}</h3>
+                        <p class="text-xs sm:text-sm text-metallicSilver leading-relaxed">${group.structureDesc}</p>
+                        
+                        <!-- Song & Metaphor Card matching group color -->
+                        <div class="p-3.5 rounded-xl border flex items-center space-x-4" style="background: linear-gradient(135deg, ${group.accentColor}18, #00000088); border-color: ${group.accentColor}55;">
+                            <div class="w-10 h-10 rounded-lg border flex items-center justify-center flex-shrink-0 shadow-md" style="background-color: ${group.accentColor}25; border-color: ${group.accentColor}88; color: ${group.accentColor};">
+                                <i class="fa-solid fa-music"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="text-[10px] font-mono block font-bold" style="color: ${group.accentColor};">Sintonía 80s / 90s Asociada</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">${group.song}</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+                            <button onclick="playClickSound(); openVinylModal(${group.id});" class="px-6 py-3 rounded-xl bg-gradient-to-r from-metallicGold to-metallicCopper text-metallicDark font-bold text-xs shadow-lg hover:brightness-110 transition flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Ver Tarjeta Técnica</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Update dots
+            const dotsContainer = document.getElementById('carousel-dots');
+            dotsContainer.innerHTML = functionalGroups.map((g, idx) => `
+                <button onclick="playClickSound(); goToVinyl(${idx});" class="w-3 h-3 rounded-full transition-all ${idx === currentVinylIndex ? 'bg-metallicGold w-6' : 'bg-white/20 hover:bg-white/40'}"></button>
+            `).join('');
+
+            document.getElementById('current-index-num').innerText = currentVinylIndex + 1;
+            document.getElementById('total-index-num').innerText = functionalGroups.length;
+            document.getElementById('current-group-name').innerText = group.name;
+        }
+
+        function nextVinyl() {
+            currentVinylIndex = (currentVinylIndex + 1) % functionalGroups.length;
+            renderCarousel();
+        }
+
+        function prevVinyl() {
+            currentVinylIndex = (currentVinylIndex - 1 + functionalGroups.length) % functionalGroups.length;
+            renderCarousel();
+        }
+
+        function goToVinyl(idx) {
+            currentVinylIndex = idx;
+            renderCarousel();
+        }
+
+        function renderGridOverview() {
+            const grid = document.getElementById('vinyl-grid-overview');
+            grid.innerHTML = functionalGroups.map((g, idx) => `
+                <div onclick="playClickSound(); goToVinyl(${idx}); switchTab('catalog');" class="p-3 rounded-2xl bg-metallicCard border border-white/10 hover:border-metallicGold transition cursor-pointer group text-center space-y-2">
+                    <div class="w-12 h-12 mx-auto rounded-full border border-white/20 flex items-center justify-center text-xs font-mono text-white group-hover:scale-110 transition" style="background: ${g.vinylColor};">
+                        #${g.id}
+                    </div>
+                    <h4 class="text-xs font-bold text-white truncate">${g.name}</h4>
+                    <span class="text-[10px] font-mono text-metallicSilver block">${g.formula}</span>
+                </div>
+            `).join('');
+        }
+
+        // --- MODAL FUNCTIONS ---
+        function openVinylModal(id) {
+            const group = functionalGroups.find(g => g.id === id);
+            if (!group) return;
+
+            document.getElementById('modal-title').innerText = group.name;
+            document.getElementById('modal-group-type').innerText = group.category;
+            document.getElementById('modal-group-type').style.color = group.accentColor;
+            document.getElementById('modal-group-type').style.borderColor = `${group.accentColor}55`;
+            
+            document.getElementById('modal-song').innerText = group.song;
+            document.getElementById('modal-metaphor').innerText = group.metaphor;
+            document.getElementById('modal-formula').innerText = group.formula;
+            document.getElementById('modal-structure-desc').innerText = group.structureDesc;
+            document.getElementById('modal-prefix').innerText = group.prefix;
+            document.getElementById('modal-suffix').innerText = group.suffix;
+            document.getElementById('modal-example-name').innerText = group.exampleName;
+            document.getElementById('modal-example-formula').innerText = group.exampleFormula;
+            document.getElementById('modal-example-formula').style.color = group.accentColor;
+            document.getElementById('modal-example-use').innerText = group.exampleUse;
+
+            // Modal Header dynamic accent matching
+            const modalHeader = document.getElementById('modal-header-bg');
+            modalHeader.style.background = `linear-gradient(135deg, ${group.accentColor}33, #14141d)`;
+            modalHeader.style.borderColor = `${group.accentColor}66`;
+
+            const modalVinylIcon = document.getElementById('modal-vinyl-icon');
+            modalVinylIcon.style.borderColor = group.accentColor;
+            modalVinylIcon.style.color = group.accentColor;
+
+            // Song banner dynamic styling matching vinyl accent color
+            const modalSongBanner = document.getElementById('modal-song-banner');
+            modalSongBanner.style.borderColor = `${group.accentColor}66`;
+            modalSongBanner.style.background = `linear-gradient(135deg, ${group.accentColor}15, #00000088)`;
+
+            const modalSongIcon = document.getElementById('modal-song-icon');
+            modalSongIcon.style.borderColor = `${group.accentColor}88`;
+            modalSongIcon.style.background = `${group.accentColor}25`;
+            modalSongIcon.style.color = group.accentColor;
+
+            const modalSongLabel = document.getElementById('modal-song-label');
+            modalSongLabel.style.color = group.accentColor;
+
+            // Section labels & headers inside modal matching accent color
+            const modalFormulaLabel = document.getElementById('modal-formula-label');
+            modalFormulaLabel.style.color = group.accentColor;
+
+            const modalNomenclatureLabel = document.getElementById('modal-nomenclature-label');
+            modalNomenclatureLabel.style.color = group.accentColor;
+
+            const modalExampleHeader = document.getElementById('modal-example-header');
+            modalExampleHeader.style.color = group.accentColor;
+
+            const modal = document.getElementById('vinyl-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('modal-content-box').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vinyl-modal');
+            modal.classList.add('opacity-0');
+            document.getElementById('modal-content-box').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- TAB NAVIGATION ---
+        function switchTab(tab) {
+            const sectionIds = ['catalog', 'flashcards', 'search', 'quiz'];
+            const activeClass = "px-3.5 py-2 rounded-xl text-xs font-bold bg-white/10 text-white transition flex items-center space-x-1.5 border border-white/10";
+            const inactiveClass = "px-3.5 py-2 rounded-xl text-xs font-bold bg-white/5 text-metallicSilver hover:bg-white/15 transition flex items-center space-x-1.5 border border-white/10";
+
+            sectionIds.forEach(id => {
+                const section = document.getElementById(`${id}-section`);
+                const nav = document.getElementById(`nav-${id}`);
+                if (section) section.classList.toggle('hidden', id !== tab);
+                if (nav) nav.className = id === tab ? activeClass : inactiveClass;
+            });
+
+            if (timerInterval && tab !== 'quiz') clearInterval(timerInterval);
+            if (tab === 'quiz') startQuiz();
+            if (tab === 'flashcards') initPractice();
+            if (tab === 'search') populateMoleculeSelect();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- FLASHCARDS / MODO PRÁCTICA (MÓDULO 2) ---
+        const practiceCards = [
+            {structure:"CH₃-CH₂-OH", name:"Etanol", group:"Alcoholes", fragment:"-OH", explanation:"El grupo hidroxilo (-OH) unido a un carbono saturado identifica a un alcohol."},
+            {structure:"CH₃-CH₂-CH₂-OH", name:"1-Propanol", group:"Alcoholes", fragment:"-OH", explanation:"La presencia del grupo hidroxilo (-OH) caracteriza a los alcoholes."},
+            {structure:"CH₃-CHO", name:"Etanal", group:"Aldehídos", fragment:"-CHO", explanation:"El carbonilo terminal -CHO corresponde a la función aldehído."},
+            {structure:"CH₃-CH₂-CHO", name:"Propanal", group:"Aldehídos", fragment:"-CHO", explanation:"El grupo carbonilo se encuentra en el extremo de la cadena como -CHO."},
+            {structure:"CH₃-CO-CH₃", name:"Propanona", group:"Cetonas", fragment:"-CO-", explanation:"Un carbonilo situado entre dos carbonos identifica a una cetona."},
+            {structure:"CH₃-CO-CH₂-CH₃", name:"2-Butanona", group:"Cetonas", fragment:"-CO-", explanation:"El grupo C=O interno de la cadena corresponde a una cetona."},
+            {structure:"CH₃-COOH", name:"Ácido etanoico", group:"Ácidos Carboxílicos", fragment:"-COOH", explanation:"El grupo carboxilo (-COOH) define a los ácidos carboxílicos."},
+            {structure:"CH₃-CH₂-COOH", name:"Ácido propanoico", group:"Ácidos Carboxílicos", fragment:"-COOH", explanation:"La subestructura -COOH es el grupo carboxilo."},
+            {structure:"CH₃-COO-CH₂-CH₃", name:"Etanoato de etilo", group:"Ésteres", fragment:"-COO-", explanation:"La unión R-COO-R' es característica de los ésteres."},
+            {structure:"H-COO-CH₃", name:"Metanoato de metilo", group:"Ésteres", fragment:"-COO-", explanation:"El grupo -COO- enlazado a dos fragmentos carbonados identifica a un éster."},
+            {structure:"CH₃-NH₂", name:"Metilamina", group:"Aminas", fragment:"-NH₂", explanation:"El nitrógeno de una amina no está unido directamente a un carbonilo; aquí aparece como -NH₂."},
+            {structure:"CH₃-CH₂-NH₂", name:"Etilamina", group:"Aminas", fragment:"-NH₂", explanation:"El grupo amino -NH₂ unido a una cadena carbonada corresponde a una amina primaria."},
+            {structure:"CH₃-CONH₂", name:"Etanamida", group:"Amidas", fragment:"-CONH₂", explanation:"En una amida, el nitrógeno está unido directamente al carbono del grupo carbonilo."},
+            {structure:"H-CONH₂", name:"Metanamida", group:"Amidas", fragment:"-CONH₂", explanation:"La subestructura -CONH₂ representa una amida primaria."},
+            {structure:"CH₃-Cl", name:"Clorometano", group:"Halogenuros de Alquilo", fragment:"-Cl", explanation:"Un halógeno unido a un carbono saturado forma un halogenuro de alquilo."},
+            {structure:"CH₃-CH₂-Br", name:"Bromoetano", group:"Halogenuros de Alquilo", fragment:"-Br", explanation:"El bromo unido a una cadena alquílica identifica un halogenuro de alquilo."},
+            {structure:"CH₂=CH₂", name:"Eteno", group:"Alquenos y Alquinos", fragment:"C=C", explanation:"El doble enlace carbono-carbono es la insaturación característica de un alqueno."},
+            {structure:"CH≡CH", name:"Etino", group:"Alquenos y Alquinos", fragment:"C≡C", explanation:"El triple enlace carbono-carbono es la insaturación característica de un alquino."}
+        ];
+        const practiceGroups = ["Alcoholes","Aldehídos","Cetonas","Ácidos Carboxílicos","Ésteres","Aminas","Amidas","Halogenuros de Alquilo","Alquenos y Alquinos"];
+        let currentPracticeCard = null;
+        let practiceScore = 0;
+        let practiceAttempts = 0;
+        let practiceAnswered = false;
+        let practiceDeck = [];
+        let practicePosition = 0;
+        let practiceFinished = false;
+
+        function shufflePracticeCards(cards) {
+            const shuffled = [...cards];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function initPractice() {
+            if (practiceDeck.length === 0 && !practiceFinished) resetPractice();
+        }
+
+        function resetPractice() {
+            practiceScore = 0;
+            practiceAttempts = 0;
+            practiceAnswered = false;
+            practiceFinished = false;
+            practicePosition = 0;
+            practiceDeck = shufflePracticeCards(practiceCards);
+            document.getElementById('practice-score').innerText = '0';
+            document.getElementById('practice-attempts').innerText = '0';
+            document.getElementById('practice-progress').innerText = '1';
+            document.getElementById('practice-results').classList.add('hidden');
+            document.getElementById('practice-options').classList.remove('hidden');
+            document.getElementById('practice-structure').classList.remove('hidden');
+            document.getElementById('practice-hint').classList.remove('hidden');
+            showPracticeCard();
+        }
+
+        function showPracticeCard() {
+            currentPracticeCard = practiceDeck[practicePosition];
+            practiceAnswered = false;
+            document.getElementById('practice-progress').innerText = String(practicePosition + 1);
+            document.getElementById('practice-structure').innerText = currentPracticeCard.structure;
+            document.getElementById('practice-hint').innerText = `Molécula: ${currentPracticeCard.name} • Selecciona su grupo funcional principal.`;
+            document.getElementById('practice-feedback').classList.add('hidden');
+            document.getElementById('practice-next-btn').classList.add('hidden');
+
+            const distractors = practiceGroups.filter(g => g !== currentPracticeCard.group).sort(() => Math.random() - 0.5).slice(0,3);
+            const options = [currentPracticeCard.group, ...distractors].sort(() => Math.random() - 0.5);
+            document.getElementById('practice-options').innerHTML = options.map((g,i) => `
+                <button onclick="playClickSound(); checkPracticeAnswer('${g.replace(/'/g,"\\'")}', this);" class="practice-option p-4 rounded-xl bg-white/5 border border-white/10 hover:border-metallicCopper hover:bg-white/10 text-left text-sm font-medium text-white transition flex items-center justify-between">
+                    <span>${g}</span><span class="w-6 h-6 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-xs font-mono text-metallicSilver">${String.fromCharCode(65+i)}</span>
+                </button>`).join('');
+        }
+
+        function nextPracticeCard() {
+            if (!practiceAnswered) return;
+            if (practicePosition >= practiceDeck.length - 1) {
+                finishPractice();
+                return;
+            }
+            practicePosition++;
+            showPracticeCard();
+        }
+
+        function checkPracticeAnswer(group, clickedButton) {
+            if (practiceAnswered || practiceFinished) return;
+            practiceAnswered = true;
+            practiceAttempts++;
+            const correct = group === currentPracticeCard.group;
+            if (correct) practiceScore++;
+            document.getElementById('practice-score').innerText = practiceScore;
+            document.getElementById('practice-attempts').innerText = practiceAttempts;
+
+            document.querySelectorAll('.practice-option').forEach(btn => {
+                btn.disabled = true;
+                const label = btn.querySelector('span').innerText;
+                if (label === currentPracticeCard.group) btn.className = "practice-option p-4 rounded-xl bg-emerald-950/80 border border-emerald-500 text-left text-sm font-bold text-white flex items-center justify-between";
+                else if (btn === clickedButton && !correct) btn.className = "practice-option p-4 rounded-xl bg-rose-950/80 border border-rose-500 text-left text-sm font-bold text-white flex items-center justify-between";
+            });
+
+            const feedback = document.getElementById('practice-feedback');
+            feedback.className = correct
+                ? "mt-6 p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/50 text-emerald-300 text-sm font-medium"
+                : "mt-6 p-4 rounded-2xl bg-rose-950/40 border border-rose-500/50 text-rose-300 text-sm font-medium";
+            feedback.innerHTML = `${correct ? '<i class="fa-solid fa-circle-check mr-2"></i> ¡Sintonía correcta!' : '<i class="fa-solid fa-circle-xmark mr-2"></i> Fuera de frecuencia.'} <strong>${currentPracticeCard.group}</strong>. Subestructura clave: <span class="font-mono text-white">${currentPracticeCard.fragment}</span>. ${currentPracticeCard.explanation}`;
+            feedback.classList.remove('hidden');
+
+            const nextBtn = document.getElementById('practice-next-btn');
+            nextBtn.innerHTML = practicePosition === practiceDeck.length - 1
+                ? 'Ver Resultado <i class="fa-solid fa-flag-checkered ml-2"></i>'
+                : 'Siguiente Pista <i class="fa-solid fa-forward-step ml-2"></i>';
+            nextBtn.classList.remove('hidden');
+        }
+
+        function finishPractice() {
+            practiceFinished = true;
+            const total = practiceDeck.length;
+            const percentage = Math.round((practiceScore / total) * 100);
+            document.getElementById('practice-next-btn').classList.add('hidden');
+            document.getElementById('practice-feedback').classList.add('hidden');
+            document.getElementById('practice-options').classList.add('hidden');
+            document.getElementById('practice-structure').classList.add('hidden');
+            document.getElementById('practice-hint').classList.add('hidden');
+            document.getElementById('practice-final-score').innerHTML = `Aciertos: <strong class="text-metallicGold">${practiceScore}/${total}</strong> &nbsp;•&nbsp; Precisión: <strong class="text-white">${percentage}%</strong>`;
+            let message = 'Sigue afinando el oído químico y vuelve a intentarlo.';
+            if (percentage >= 90) message = '¡Disco de platino! Dominas el reconocimiento de grupos funcionales.';
+            else if (percentage >= 70) message = '¡Muy buen ritmo! Tienes una identificación funcional sólida.';
+            else if (percentage >= 50) message = 'Buen avance. Una nueva ronda ayudará a reforzar las subestructuras.';
+            document.getElementById('practice-final-message').innerText = message;
+            document.getElementById('practice-results').classList.remove('hidden');
+        }
+
+        // --- BUSCADOR / DESGLOSE POR SUBESTRUCTURA (MÓDULO 3) ---
+        const moleculeLibrary = [
+            {name:"Etanol", aliases:["alcohol etilico","ch3ch2oh","c2h5oh"], structure:"CH₃-CH₂-OH", display:"CH₃-CH₂-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>OH</mark>", group:"Alcoholes", category:"Compuestos oxigenados", fragment:"-OH (grupo hidroxilo)", explanation:"El grupo -OH unido a un carbono saturado es la subestructura principal que permite clasificar al etanol como alcohol."},
+            {name:"1-Propanol", aliases:["propan-1-ol","ch3ch2ch2oh","c3h7oh"], structure:"CH₃-CH₂-CH₂-OH", display:"CH₃-CH₂-CH₂-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>OH</mark>", group:"Alcoholes", category:"Compuestos oxigenados", fragment:"-OH (grupo hidroxilo)", explanation:"La presencia del grupo hidroxilo terminal determina la función alcohol."},
+            {name:"Metanal (Formaldehído)", aliases:["metanal","formaldehido","formol","hcho","ch2o"], structure:"H-CHO", display:"H-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CHO</mark>", group:"Aldehídos", category:"Compuestos oxigenados", fragment:"-CHO (carbonilo terminal)", explanation:"El grupo -CHO contiene un carbonilo terminal; en el metanal, el carbono del grupo aldehído está unido a un hidrógeno."},
+            {name:"Etanal", aliases:["acetaldehido","ch3cho","c2h4o"], structure:"CH₃-CHO", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CHO</mark>", group:"Aldehídos", category:"Compuestos oxigenados", fragment:"-CHO (carbonilo terminal)", explanation:"El grupo -CHO contiene un carbonilo en el extremo de la cadena y caracteriza a los aldehídos."},
+            {name:"Propanal", aliases:["ch3ch2cho","c3h6o"], structure:"CH₃-CH₂-CHO", display:"CH₃-CH₂-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CHO</mark>", group:"Aldehídos", category:"Compuestos oxigenados", fragment:"-CHO (carbonilo terminal)", explanation:"El carbonilo terminal -CHO identifica a la molécula como aldehído."},
+            {name:"Propanona (Acetona)", aliases:["propanona","acetona","ch3coch3","c3h6o"], structure:"CH₃-CO-CH₃", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CO</mark>-CH₃", group:"Cetonas", category:"Compuestos oxigenados", fragment:">C=O (carbonilo interno)", explanation:"El grupo carbonilo se encuentra entre dos carbonos; esa posición interna corresponde a una cetona."},
+            {name:"2-Butanona", aliases:["butan-2-ona","ch3coch2ch3","c4h8o"], structure:"CH₃-CO-CH₂-CH₃", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CO</mark>-CH₂-CH₃", group:"Cetonas", category:"Compuestos oxigenados", fragment:">C=O (carbonilo interno)", explanation:"El carbonilo interno permite clasificar la estructura como cetona."},
+            {name:"Ácido etanoico (Ácido acético)", aliases:["acido etanoico","acido acetico","ch3cooh","c2h4o2"], structure:"CH₃-COOH", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>COOH</mark>", group:"Ácidos Carboxílicos", category:"Compuestos oxigenados", fragment:"-COOH (grupo carboxilo)", explanation:"El grupo carboxilo -COOH es la subestructura principal de los ácidos carboxílicos."},
+            {name:"Ácido propanoico", aliases:["acido propanoico","ch3ch2cooh","c3h6o2"], structure:"CH₃-CH₂-COOH", display:"CH₃-CH₂-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>COOH</mark>", group:"Ácidos Carboxílicos", category:"Compuestos oxigenados", fragment:"-COOH (grupo carboxilo)", explanation:"La función principal es el grupo carboxilo -COOH."},
+            {name:"Etanoato de etilo", aliases:["acetato de etilo","ch3cooch2ch3","c4h8o2"], structure:"CH₃-COO-CH₂-CH₃", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>COO</mark>-CH₂-CH₃", group:"Ésteres", category:"Compuestos oxigenados", fragment:"-COO- (grupo éster)", explanation:"La secuencia R-COO-R' corresponde al grupo funcional éster."},
+            {name:"Metanoato de metilo", aliases:["formiato de metilo","hcooch3","c2h4o2"], structure:"H-COO-CH₃", display:"H-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>COO</mark>-CH₃", group:"Ésteres", category:"Compuestos oxigenados", fragment:"-COO- (grupo éster)", explanation:"El enlace -COO- entre fragmentos orgánicos identifica la función éster."},
+            {name:"Metilamina", aliases:["metanamina","ch3nh2","ch5n"], structure:"CH₃-NH₂", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>NH₂</mark>", group:"Aminas", category:"Compuestos nitrogenados", fragment:"-NH₂ (grupo amino)", explanation:"El nitrógeno está unido a una cadena carbonada y no a un carbonilo; corresponde a una amina primaria."},
+            {name:"Etilamina", aliases:["etanamina","ch3ch2nh2","c2h7n"], structure:"CH₃-CH₂-NH₂", display:"CH₃-CH₂-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>NH₂</mark>", group:"Aminas", category:"Compuestos nitrogenados", fragment:"-NH₂ (grupo amino)", explanation:"El grupo amino -NH₂ unido a la cadena alquílica caracteriza a una amina primaria."},
+            {name:"Etanamida (Acetamida)", aliases:["etanamida","acetamida","ch3conh2","c2h5no"], structure:"CH₃-CONH₂", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CONH₂</mark>", group:"Amidas", category:"Compuestos nitrogenados", fragment:"-CONH₂ (grupo amida)", explanation:"El nitrógeno unido directamente al carbono del carbonilo forma la función amida."},
+            {name:"Metanamida (Formamida)", aliases:["metanamida","formamida","hconh2","ch3no"], structure:"H-CONH₂", display:"H-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CONH₂</mark>", group:"Amidas", category:"Compuestos nitrogenados", fragment:"-CONH₂ (grupo amida)", explanation:"La unión C(=O)-N es el rasgo estructural característico de las amidas."},
+            {name:"Clorometano", aliases:["cloruro de metilo","ch3cl"], structure:"CH₃-Cl", display:"CH₃-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>Cl</mark>", group:"Halogenuros de Alquilo", category:"Compuestos halogenados", fragment:"C-Cl (enlace carbono-halógeno)", explanation:"El cloro está unido a un carbono saturado; por ello se clasifica como halogenuro de alquilo."},
+            {name:"Bromoetano", aliases:["bromuro de etilo","ch3ch2br","c2h5br"], structure:"CH₃-CH₂-Br", display:"CH₃-CH₂-<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>Br</mark>", group:"Halogenuros de Alquilo", category:"Compuestos halogenados", fragment:"C-Br (enlace carbono-halógeno)", explanation:"El bromo unido a la cadena saturada identifica un halogenuro de alquilo."},
+            {name:"Eteno (Etileno)", aliases:["eteno","etileno","ch2ch2","ch2=ch2","c2h4"], structure:"CH₂=CH₂", display:"<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CH₂=CH₂</mark>", group:"Alquenos y Alquinos", category:"Hidrocarburos insaturados", fragment:"C=C (doble enlace)", explanation:"El doble enlace C=C es la insaturación que clasifica al eteno como alqueno."},
+            {name:"Etino (Acetileno)", aliases:["etino","acetileno","chch","ch≡ch","c2h2"], structure:"CH≡CH", display:"<mark class='bg-metallicGold/25 text-metallicGold px-1 rounded'>CH≡CH</mark>", group:"Alquenos y Alquinos", category:"Hidrocarburos insaturados", fragment:"C≡C (triple enlace)", explanation:"El triple enlace C≡C es la insaturación que clasifica al etino como alquino."}
+        ];
+        let moleculeSelectPopulated = false;
+
+        function normalizeChemText(text) {
+            return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[₀₁₂₃₄₅₆₇₈₉]/g, d => '0123456789'['₀₁₂₃₄₅₆₇₈₉'.indexOf(d)]).replace(/[\s\-()']/g,'');
+        }
+
+        function populateMoleculeSelect() {
+            if (moleculeSelectPopulated) return;
+            const select = document.getElementById('molecule-select');
+            moleculeLibrary.forEach((m,i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${m.name} — ${m.structure}`;
+                select.appendChild(opt);
+            });
+            moleculeSelectPopulated = true;
+        }
+
+        function selectMoleculeExample() {
+            const select = document.getElementById('molecule-select');
+            if (select.value === '') return;
+            const m = moleculeLibrary[Number(select.value)];
+            document.getElementById('molecule-search-input').value = m.name;
+            showMoleculeResult(m);
+        }
+
+        function analyzeMolecule() {
+            const raw = document.getElementById('molecule-search-input').value.trim();
+            const resultBox = document.getElementById('molecule-result');
+            const notFound = document.getElementById('molecule-not-found');
+            if (!raw) {
+                resultBox.classList.add('hidden');
+                document.getElementById('not-found-text').innerText = 'Escribe un nombre o fórmula, o selecciona una molécula de la biblioteca.';
+                notFound.classList.remove('hidden');
+                return;
+            }
+            const query = normalizeChemText(raw);
+            const matches = moleculeLibrary.filter(m => [m.name, m.structure, ...m.aliases].some(a => normalizeChemText(a) === query));
+            if (matches.length === 1) {
+                showMoleculeResult(matches[0]);
+            } else if (matches.length > 1) {
+                resultBox.classList.add('hidden');
+                document.getElementById('not-found-text').innerText = `La fórmula ingresada puede corresponder a más de una estructura de la biblioteca (${matches.map(m=>m.name).join(', ')}). Escribe el nombre o una fórmula estructural más específica.`;
+                notFound.classList.remove('hidden');
+            } else {
+                resultBox.classList.add('hidden');
+                document.getElementById('not-found-text').innerText = 'No encontré una coincidencia exacta en la biblioteca didáctica. Prueba con ejemplos como etanol, CH3CH2OH, acetona, CH3COOH, eteno o selecciona una opción del menú.';
+                notFound.classList.remove('hidden');
+            }
+        }
+
+        function showMoleculeResult(m) {
+            document.getElementById('molecule-not-found').classList.add('hidden');
+            document.getElementById('result-molecule-name').innerText = m.name;
+            document.getElementById('result-category').innerText = m.category;
+            document.getElementById('result-structure').innerHTML = m.display;
+            document.getElementById('result-group').innerText = m.group;
+            document.getElementById('result-substructure').innerText = `Subestructura detectada: ${m.fragment}`;
+            document.getElementById('result-explanation').innerText = m.explanation;
+            document.getElementById('molecule-result').classList.remove('hidden');
+        }
+
+        // --- QUIZ LOGIC (MÓDULO 2) ---
+        const quizQuestions = [
+            {
+                question: "Identifica el grupo funcional caracterizado por la fórmula general R-COOH y presente en el vinagre:",
+                options: ["Alcoholes", "Cetonas", "Ácidos Carboxílicos", "Aldehídos"],
+                correct: 2,
+                explanation: "El grupo carboxilo (-COOH) define a los ácidos carboxílicos, conocidos por su carácter ácido y presencia en vinagre."
+            },
+            {
+                question: "¿Cuál es la canción asociada al grupo de los Alcoholes (R-OH) en nuestro catálogo de vinilos?",
+                options: ["«Purple Rain» — Prince", "«Billie Jean» — Michael Jackson", "«Vogue» — Madonna", "«Jump» — Van Halen"],
+                correct: 0,
+                explanation: "«Purple Rain» de Prince sintoniza con los alcoholes debido a sus fuertes puentes de hidrógeno y puntos de ebullición elevados."
+            },
+            {
+                question: "Estructura que contiene un grupo carbonilo (C=O) situado en el extremo de la cadena carbonada:",
+                options: ["Ésteres", "Aldehídos", "Cetonas", "Aminas"],
+                correct: 1,
+                explanation: "Los aldehídos (R-CHO) siempre poseen el grupo carbonilo en el carbono terminal."
+            },
+            {
+                question: "Las aminas (primarias, secundarias y terciarias) son derivados orgánicos directos de:",
+                options: ["El agua (H₂O)", "El amoníaco (NH₃)", "El metano (CH₄)", "El ácido acético"],
+                correct: 1,
+                explanation: "Las aminas se forman al sustituir uno o más hidrógenos del amoníaco (NH₃) por grupos alquilo o arilo."
+            },
+            {
+                question: "¿Qué grupo funcional se asocia al éxito de Nirvana «Smells Like Teen Spirit» por tener un carbonilo interno?",
+                options: ["Halogenuros de alquilo", "Ésteres", "Cetonas (R-CO-R')", "Amidas"],
+                correct: 2,
+                explanation: "Las cetonas presentan el grupo carbonilo (C=O) situado entre dos átomos de carbono o radicales hidrocarbonados en el interior de la cadena."
+            },
+            {
+                question: "El grupo funcional caracterizado por tener enlaces dobles (C=C) o triples (C≡C) recibe el nombre de:",
+                options: ["Insaturaciones (Alquenos / Alquinos)", "Halogenuros", "Alcoholes", "Amidas"],
+                correct: 0,
+                explanation: "Los alquenos y alquinos contienen insaturaciones altamente reactivas frente a reacciones de adición."
+            },
+            {
+                question: "Elegancia, aromas frutales y la sintonía con «Vogue» de Madonna describen perfectamente a:",
+                options: ["Los Ácidos Carboxílicos", "Los Ésteres (R-COO-R')", "Las Aminas", "Los Aldehídos"],
+                correct: 1,
+                explanation: "Los ésteres son reconocidos por sus fragancias frutales y dulces, evocando el glamour y la moda."
+            },
+            {
+                question: "Compuestos formados por una cadena carbonada unida covalentemente a flúor, cloro, bromo o yodo (R-X):",
+                options: ["Halogenuros de alquilo", "Éteres", "Alcoholes", "Cetonas"],
+                correct: 0,
+                explanation: "Los halogenuros de alquilo incorporan átomos de halógenos como sustituyentes reactivos."
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let quizTimer = 30;
+        let timerInterval = null;
+        let answerSelected = false;
+
+        function startQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-results-card').classList.add('hidden');
+            document.getElementById('quiz-body').parentElement.classList.remove('hidden');
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            if (currentQuizIndex >= quizQuestions.length) {
+                endQuiz();
+                return;
+            }
+
+            answerSelected = false;
+            quizTimer = 30;
+            document.getElementById('quiz-timer').innerText = quizTimer + 's';
+            document.getElementById('quiz-current-q').innerText = currentQuizIndex + 1;
+            document.getElementById('quiz-total-q').innerText = quizQuestions.length;
+            document.getElementById('quiz-score').innerText = quizScore;
+
+            const q = quizQuestions[currentQuizIndex];
+            document.getElementById('quiz-category').innerText = `Pregunta ${currentQuizIndex + 1} de ${quizQuestions.length}`;
+            
+            const body = document.getElementById('quiz-body');
+            body.innerHTML = `
+                <h4 class="text-base sm:text-lg font-semibold text-white leading-snug">${q.question}</h4>
+                <div class="grid grid-cols-1 gap-3 pt-2">
+                    ${q.options.map((opt, idx) => `
+                        <button onclick="playClickSound(); selectQuizAnswer(${idx});" id="quiz-opt-${idx}" class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-metallicGold hover:bg-white/10 text-left text-sm font-medium text-white transition flex items-center justify-between group">
+                            <span>${opt}</span>
+                            <span class="w-6 h-6 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-xs font-mono text-metallicSilver group-hover:text-metallicGold">${String.fromCharCode(65 + idx)}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                quizTimer--;
+                document.getElementById('quiz-timer').innerText = quizTimer + 's';
+                if (quizTimer <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        function selectQuizAnswer(selectedIdx) {
+            if (answerSelected) return;
+            answerSelected = true;
+            clearInterval(timerInterval);
+
+            const q = quizQuestions[currentQuizIndex];
+            const feedbackBox = document.getElementById('quiz-feedback');
+            const nextBtn = document.getElementById('quiz-next-btn');
+
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`quiz-opt-${i}`);
+                btn.disabled = true;
+                if (i === q.correct) {
+                    btn.className = "p-4 rounded-xl bg-emerald-950/80 border border-emerald-500 text-left text-sm font-bold text-white flex items-center justify-between shadow-lg";
+                } else if (i === selectedIdx) {
+                    btn.className = "p-4 rounded-xl bg-rose-950/80 border border-rose-500 text-left text-sm font-bold text-white flex items-center justify-between";
+                }
+            }
+
+            if (selectedIdx === q.correct) {
+                quizScore += 12.5; 
+                document.getElementById('quiz-score').innerText = Math.round(quizScore);
+                feedbackBox.className = "mt-6 p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/50 text-emerald-300 text-sm font-medium";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> ¡Correcto! ${q.explanation}`;
+            } else {
+                feedbackBox.className = "mt-6 p-4 rounded-2xl bg-rose-950/40 border border-rose-500/50 text-rose-300 text-sm font-medium";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i> Incorrecto. ${q.explanation}`;
+            }
+
+            feedbackBox.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+        }
+
+        function handleTimeOut() {
+            if (answerSelected) return;
+            answerSelected = true;
+            const q = quizQuestions[currentQuizIndex];
+            const feedbackBox = document.getElementById('quiz-feedback');
+            
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`quiz-opt-${i}`);
+                btn.disabled = true;
+                if (i === q.correct) {
+                    btn.className = "p-4 rounded-xl bg-emerald-950/80 border border-emerald-500 text-left text-sm font-bold text-white flex items-center justify-between";
+                }
+            }
+
+            feedbackBox.className = "mt-6 p-4 rounded-2xl bg-amber-950/40 border border-amber-500/50 text-amber-300 text-sm font-medium";
+            feedbackBox.innerHTML = `<i class="fa-solid fa-clock mr-2"></i> ¡Tiempo agotado! ${q.explanation}`;
+            feedbackBox.classList.remove('hidden');
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            loadQuizQuestion();
+        }
+
+        function endQuiz() {
+            document.getElementById('quiz-body').parentElement.classList.add('hidden');
+            document.getElementById('quiz-results-card').classList.remove('hidden');
+            
+            const finalScore = Math.round(quizScore);
+            document.getElementById('final-score-display').innerText = `${finalScore} / 100`;
+
+            let feedbackMsg = "";
+            if (finalScore >= 90) {
+                feedbackMsg = "¡Impresionante! Tienes oído absoluto para la química orgánica y el ritmo jazz de los 80. ¡Estrellas del vinilo!";
+            } else if (finalScore >= 60) {
+                feedbackMsg = "¡Buen trabajo, DJ molecular! Conoces muy bien las familias principales, repasa algunos detalles en el catálogo.";
+            } else {
+                feedbackMsg = "¡Sigue practicando! Gira nuevamente los vinilos en el Módulo 1 para dominar las estructuras y fórmulas.";
+            }
+            document.getElementById('final-feedback-text').innerText = `« ${feedbackMsg} »`;
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        // --- INITIALIZATION ON LOAD ---
+        window.onload = function() {
+            renderCarousel();
+            renderGridOverview();
+            populateMoleculeSelect();
+        };
+    </script>
+</body>
+</html>
